@@ -1,8 +1,9 @@
 import { ContactShadows, Environment, Float, Lightformer, PresentationControls } from '@react-three/drei'
-import { Canvas, useFrame } from '@react-three/fiber'
-import { useEffect, useMemo, useRef, useState } from 'react'
+import { Canvas, useFrame, useThree } from '@react-three/fiber'
+import { useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react'
 import * as THREE from 'three'
 import type { Flavour } from '../data/menu'
+import { computeFit } from './fit'
 import { createBucketTexture, getChickenGeometry } from './geometry'
 import { assetUrl } from '../lib/assetUrl'
 
@@ -98,12 +99,34 @@ function ChickenPieces({ flavour }: { flavour: Flavour }) {
   )
 }
 
+const CAMERA_FOV = 34
+const CAMERA_HEIGHT_RATIO = 1.1 / 6
+
+function useCameraFit() {
+  const size = useThree((state) => state.size)
+  return useMemo(() => computeFit(size.width / Math.max(size.height, 1), CAMERA_FOV), [size.width, size.height])
+}
+
+/** Moves the camera so the bucket fills the canvas at any shape: wide on phones, tall on desktop. */
+function FitCamera() {
+  const camera = useThree((state) => state.camera)
+  const invalidate = useThree((state) => state.invalidate)
+  const { distance } = useCameraFit()
+  useLayoutEffect(() => {
+    camera.position.set(0, distance * CAMERA_HEIGHT_RATIO, distance)
+    camera.updateProjectionMatrix()
+    invalidate()
+  }, [camera, distance, invalidate])
+  return null
+}
+
 function FloatingFries() {
+  const { frySpread } = useCameraFit()
   return (
     <>
       {FRIES.map((fry, i) => (
         <Float key={i} speed={1.4 + i * 0.2} rotationIntensity={1.2} floatIntensity={1.4}>
-          <mesh position={fry.position} rotation={fry.rotation}>
+          <mesh position={[fry.position[0] * frySpread, fry.position[1], fry.position[2]]} rotation={fry.rotation}>
             <boxGeometry args={[0.11, 0.78, 0.11]} />
             <meshStandardMaterial color="#f6c453" roughness={0.55} />
           </mesh>
@@ -160,11 +183,14 @@ export default function BucketScene({ flavour, isAnimated, isOnScreen, onReady }
   return (
     <Canvas
       dpr={IS_TOUCH_DEVICE ? [1, 1.5] : [1, 1.75]}
-      camera={{ position: [0, 1.1, 6], fov: 34 }}
+      camera={{ position: [0, 1.1, 6], fov: CAMERA_FOV }}
       frameloop={isAnimated && isOnScreen ? 'always' : 'demand'}
       gl={{ antialias: !IS_TOUCH_DEVICE, powerPreference: 'high-performance' }}
+      // Vertical swipes scroll the page on phones; sideways drags still spin the bucket.
+      style={{ touchAction: 'pan-y' }}
       aria-hidden
     >
+      <FitCamera />
       <ambientLight intensity={0.45} />
       <directionalLight position={[3, 5, 4]} intensity={2.2} color="#fff1d6" />
       <pointLight position={[-3, 1, -3]} intensity={18} color="#ff7a3c" />

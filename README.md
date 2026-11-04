@@ -40,7 +40,7 @@ The home page opens on a silent, looping video (`public/videos/`). It is cut fro
 the same footage the old chicking.ug hero streamed from chickingoman.com. The 60-second, 30 MB original
 was trimmed to about 26 seconds, lightly denoised, upscaled with a sharp (Lanczos) filter and sharpened:
 9.4 MB for desktop (`hero-desktop.mp4`, 1920×1080) and 4.0 MB for phones (`hero-mobile.mp4`, a
-608×1080 portrait crop). That keeps it as clear as the original on large and retina screens at a third of the size. A still poster shows first and
+608×1080 portrait version, reframed shot by shot with `scripts/reframe-mobile-video.py` so people, food and the bucket stay in view on phones). That keeps it as clear as the original on large and retina screens at a third of the size. A still poster shows first and
 stays if the video can't play. The video doesn't autoplay with reduced motion or Data Saver on, pauses
 when scrolled out of view, and has a pause button. To use different footage, replace those four files
 and keep the names. To re-create them from new footage:

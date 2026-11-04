@@ -21,8 +21,10 @@ export function FlavourSection() {
       <div aria-hidden className="absolute inset-0 -z-10 opacity-[0.07] [background-image:repeating-linear-gradient(-45deg,#fff_0_2px,transparent_2px_22px)]" />
       <div aria-hidden className="absolute -left-40 top-1/3 -z-10 h-[32rem] w-[32rem] rounded-full border-[50px] border-gold/10" />
 
-      <div className="container-page grid items-center gap-6 lg:grid-cols-[1fr_1.1fr]">
-        <div>
+      {/* Phones: heading, then the bucket, then the flavour buttons right under it, so a tap
+          visibly changes the chicken. Desktop: text on the left, bucket on the right. */}
+      <div className="container-page grid gap-x-10 lg:grid-cols-[1fr_1.1fr] lg:grid-rows-[1fr_auto_auto_1fr]">
+        <div className="lg:col-start-1 lg:row-start-2">
           <p className="eyebrow text-white/85">It&apos;s my choice</p>
           <h2 className="mt-3 text-5xl leading-[0.9] sm:text-6xl lg:text-7xl">
             Original. <span className="text-gold">Spicy.</span> Grilled.
@@ -30,13 +32,24 @@ export function FlavourSection() {
           <p className="mt-5 max-w-md text-lg text-white/80">
             Every piece, every bucket, your way. Pick a flavour and give the bucket a spin.
           </p>
+        </div>
 
+        <div className="relative -mx-4 mt-4 h-[min(24rem,58vh)] sm:h-[28rem] lg:col-start-2 lg:row-span-4 lg:row-start-1 lg:mx-0 lg:mt-0 lg:h-[36rem] lg:self-center">
+          <div aria-hidden className="absolute inset-x-10 bottom-8 h-24 rounded-full bg-black/40 blur-3xl" />
+          <Bucket3D flavour={flavour} />
+          <p className="pointer-events-none absolute bottom-2 left-1/2 -translate-x-1/2 text-[10px] uppercase tracking-[0.3em] text-white/50 lg:text-xs">
+            <span className="lg:hidden">Swipe sideways to spin</span>
+            <span className="hidden lg:inline">Drag to spin</span>
+          </p>
+        </div>
+
+        <div className="lg:col-start-1 lg:row-start-3">
           <SegmentedControl
             label="Choose a flavour"
             options={FLAVOUR_OPTIONS}
             value={flavour}
             onChange={setFlavour}
-            className="mt-7 inline-flex rounded-full bg-black/25 p-1.5 backdrop-blur"
+            className="mt-2 inline-flex lg:mt-7 rounded-full bg-black/25 p-1.5 backdrop-blur"
             optionClassName={(isSelected) =>
               `rounded-full px-4 py-2 font-display text-sm uppercase tracking-wider transition sm:px-6 sm:text-base ${
                 isSelected ? 'bg-gold text-char shadow-lg' : 'text-white/80 hover:text-white'
@@ -48,14 +61,6 @@ export function FlavourSection() {
           <Link to="/menu" className="btn-ghost mt-6 text-white">
             Explore the menu <ArrowIcon />
           </Link>
-        </div>
-
-        <div className="relative -mx-4 h-[20rem] sm:h-[28rem] lg:mx-0 lg:h-[36rem]">
-          <div aria-hidden className="absolute inset-x-10 bottom-8 h-24 rounded-full bg-black/40 blur-3xl" />
-          <Bucket3D flavour={flavour} />
-          <p className="pointer-events-none absolute bottom-2 left-1/2 hidden -translate-x-1/2 text-xs uppercase tracking-[0.3em] text-white/50 lg:block">
-            Drag to spin
-          </p>
         </div>
       </div>
     </section>
