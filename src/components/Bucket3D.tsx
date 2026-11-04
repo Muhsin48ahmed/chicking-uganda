@@ -1,6 +1,7 @@
 import { Component, lazy, Suspense, useRef, useState, type ReactNode } from 'react'
 import type { Flavour } from '../data/menu'
 import { useHasBeenNear, useIsOnScreen, usePrefersReducedMotion } from '../lib/hooks'
+import { assetUrl } from '../lib/assetUrl'
 
 const BucketScene = lazy(() => import('../three/BucketScene'))
 
@@ -37,7 +38,7 @@ class SceneErrorBoundary extends Component<{ fallback: ReactNode; children: Reac
 function BucketPoster() {
   return (
     <img
-      src="/images/menu/variety-bucket.webp"
+      src={assetUrl('/images/menu/variety-bucket.webp')}
       alt="A Chicking bucket of fried chicken with fries, coleslaw and buns"
       className="h-full w-full animate-float-slow object-contain drop-shadow-[0_30px_40px_rgba(0,0,0,0.45)]"
     />

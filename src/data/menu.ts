@@ -1,3 +1,5 @@
+import { assetUrl } from '../lib/assetUrl'
+
 /**
  * Menu and prices transcribed from the in-store menu boards on chicking.ug
  * (images/2025/08/11/led-1..5.jpg). Update prices here only.
@@ -38,7 +40,7 @@ export interface MenuItem {
   serves?: string
 }
 
-const img = (name: string) => `/images/menu/${name}.webp`
+const img = (name: string) => assetUrl(`/images/menu/${name}.webp`)
 const ORIGINAL_SPICY: readonly Flavour[] = ['original', 'spicy']
 const ALL_FLAVOURS: readonly Flavour[] = ['original', 'spicy', 'grilled']
 

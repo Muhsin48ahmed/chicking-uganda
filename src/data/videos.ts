@@ -1,3 +1,5 @@
+import { assetUrl } from '../lib/assetUrl'
+
 /**
  * Promo videos from Chicking Uganda's TikTok (@chicking.uganda), November 2026.
  * To add one: copy the number at the end of the TikTok video link and add an
@@ -31,24 +33,24 @@ export interface PromoVideo {
  * To replace it, drop new files at these paths (see README for the ffmpeg settings).
  */
 export const HERO_VIDEO = {
-  desktop: '/videos/hero-desktop.mp4',
-  mobile: '/videos/hero-mobile.mp4',
-  poster: '/videos/hero-poster.webp',
-  posterMobile: '/videos/hero-poster-mobile.webp',
+  desktop: assetUrl('/videos/hero-desktop.mp4'),
+  mobile: assetUrl('/videos/hero-mobile.mp4'),
+  poster: assetUrl('/videos/hero-poster.webp'),
+  posterMobile: assetUrl('/videos/hero-poster-mobile.webp'),
 } as const
 
 const TIKTOK_ACCOUNT = 'chicking.uganda'
 const TIKTOK_ID_PATTERN = /^\d{18,20}$/
 
 export const PROMO_VIDEOS: readonly PromoVideo[] = [
-  { id: '7702364846255279367', kicker: 'Every Friday', title: 'Mega Friday: 10 pcs for UGX 51,000', poster: '/images/menu/super-saver.webp', tags: ['deal'] },
+  { id: '7702364846255279367', kicker: 'Every Friday', title: 'Mega Friday: 10 pcs for UGX 51,000', poster: assetUrl('/images/menu/super-saver.webp'), tags: ['deal'] },
   { id: '7699034856277216520', kicker: 'Wednesday & Saturday', title: 'Buy 1 pizza, get 1 free', posterText: '1+1', tags: ['deal'] },
-  { id: '7701250000096988424', kicker: 'UGX 28,000', title: 'Grilled Chicken Budget Meal', poster: '/images/menu/budget-meal.webp', tags: ['food', 'deal'] },
-  { id: '7692336652320001288', kicker: 'Meal for one', title: 'Kampala, ready for the crunch?', poster: '/images/menu/crunchy-box-c3.webp', tags: ['food'] },
-  { id: '7686034501620862226', kicker: 'For the whole table', title: 'The Chicken Lover Bucket', poster: '/images/menu/chicken-lover-bucket.webp', tags: ['food'] },
-  { id: '7683071416987684114', kicker: 'UGX 27,000', title: '5 pcs Strips Meal', poster: '/images/menu/strips-meal.webp', tags: ['food'] },
-  { id: '7676392344559570183', kicker: 'Spicy kick', title: 'Tandoori Burger combo', poster: '/images/menu/tandoori-burger.webp', tags: ['food'] },
-  { id: '7671569005475417352', kicker: 'Thank you, Kampala', title: '1 year of Chicking Uganda', poster: '/images/menu/share-bucket.webp', tags: ['brand'] },
+  { id: '7701250000096988424', kicker: 'UGX 28,000', title: 'Grilled Chicken Budget Meal', poster: assetUrl('/images/menu/budget-meal.webp'), tags: ['food', 'deal'] },
+  { id: '7692336652320001288', kicker: 'Meal for one', title: 'Kampala, ready for the crunch?', poster: assetUrl('/images/menu/crunchy-box-c3.webp'), tags: ['food'] },
+  { id: '7686034501620862226', kicker: 'For the whole table', title: 'The Chicken Lover Bucket', poster: assetUrl('/images/menu/chicken-lover-bucket.webp'), tags: ['food'] },
+  { id: '7683071416987684114', kicker: 'UGX 27,000', title: '5 pcs Strips Meal', poster: assetUrl('/images/menu/strips-meal.webp'), tags: ['food'] },
+  { id: '7676392344559570183', kicker: 'Spicy kick', title: 'Tandoori Burger combo', poster: assetUrl('/images/menu/tandoori-burger.webp'), tags: ['food'] },
+  { id: '7671569005475417352', kicker: 'Thank you, Kampala', title: '1 year of Chicking Uganda', poster: assetUrl('/images/menu/share-bucket.webp'), tags: ['brand'] },
 ]
 
 function assertTikTokId(id: string): void {

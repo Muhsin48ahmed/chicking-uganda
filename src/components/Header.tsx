@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { Link, NavLink } from 'react-router-dom'
 import { DELIVERY_PARTNERS, NAV_LINKS } from '../config/site'
 import { BikeIcon, CloseIcon, MenuIcon } from './Icons'
+import { assetUrl } from '../lib/assetUrl'
 
 const SCROLL_THRESHOLD = 24
 
@@ -33,7 +34,7 @@ export function Header() {
       <div className="container-page flex items-center justify-between gap-4">
         <Link to="/" onClick={() => setIsMenuOpen(false)} className="flex shrink-0 items-center gap-3" aria-label="Chicking Uganda home">
           <img
-            src="/images/brand/logo-round.png"
+            src={assetUrl('/images/brand/logo-round.png')}
             alt=""
             width={56}
             height={56}

@@ -8,6 +8,7 @@ import { ArrowIcon, CheckIcon, ClockIcon, FlameIcon, GlobeIcon, LeafIcon, PartyI
 import { MenuCard } from '../MenuCard'
 import { SegmentedControl } from '../SegmentedControl'
 import { OpenStatusPill, Reveal, SectionHeading } from '../ui'
+import { assetUrl } from '../../lib/assetUrl'
 
 const MARQUEE_WORDS = ['Fresh, never frozen', '100% Halal', 'Made to order', 'Original · Spicy · Grilled', 'Open 11am – 11pm']
 
@@ -68,7 +69,7 @@ export function BucketsSection() {
       <div aria-hidden className="absolute inset-0 opacity-30 [background:radial-gradient(circle_at_20%_20%,#d7141a,transparent_55%)]" />
       <div className="container-page relative grid items-center gap-12 lg:grid-cols-2">
         <Reveal className="order-2 lg:order-1">
-          <img src="/images/menu/super-saver.webp" alt="Super Saver buckets of Original, Spicy and Grilled chicken" loading="lazy" className="w-full rounded-3xl" />
+          <img src={assetUrl('/images/menu/super-saver.webp')} alt="Super Saver buckets of Original, Spicy and Grilled chicken" loading="lazy" className="w-full rounded-3xl" />
         </Reveal>
         <div className="order-1 lg:order-2">
           <SectionHeading tone="dark" eyebrow="Super Saver buckets" title={<>Feeding the <span className="text-gold">whole crew?</span></>}
@@ -100,7 +101,7 @@ export function BucketsSection() {
   )
 }
 
-const HALAL_ICON = () => <img src="/images/brand/halal.jpg" alt="" className="h-7 w-7 rounded-full" />
+const HALAL_ICON = () => <img src={assetUrl('/images/brand/halal.jpg')} alt="" className="h-7 w-7 rounded-full" />
 const FACT_ICONS: Record<FactIcon, () => React.JSX.Element> = {
   halal: HALAL_ICON,
   flame: () => <FlameIcon width={28} height={28} />,

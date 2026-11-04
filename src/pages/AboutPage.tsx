@@ -4,6 +4,7 @@ import { PageHero, Reveal, SectionHeading, usePageMeta } from '../components/ui'
 import { BRAND_STATS, WORLD_FLAVOURS } from '../data/brand'
 import { getVideosByTag } from '../data/videos'
 import { VideoReel } from '../components/VideoReel'
+import { assetUrl } from '../lib/assetUrl'
 
 export function AboutPage() {
   usePageMeta('Our Story', 'Born in Dubai in 2000, Chicking is a fully halal international chicken brand now serving Kampala from Jumbo Plaza.')
@@ -34,7 +35,7 @@ export function AboutPage() {
         </div>
         <Reveal className="relative">
           <div aria-hidden className="absolute inset-6 -rotate-3 rounded-[2rem] bg-brand" />
-          <img src="/images/menu/chicken-lover-bucket.webp" alt="Chicken Lover Bucket with wings, rice and tandoori fries" loading="lazy" className="relative rounded-[2rem] bg-cream shadow-2xl" />
+          <img src={assetUrl('/images/menu/chicken-lover-bucket.webp')} alt="Chicken Lover Bucket with wings, rice and tandoori fries" loading="lazy" className="relative rounded-[2rem] bg-cream shadow-2xl" />
         </Reveal>
       </section>
 
@@ -57,7 +58,7 @@ export function AboutPage() {
         intro="Chicking Uganda turned one this year. Thank you, Kampala, for every bucket, box and bite." />
 
       <section className="container-page flex flex-col items-center py-20 text-center">
-        <img src="/images/brand/halal.jpg" alt="Halal certified" className="h-24 w-24 rounded-full" />
+        <img src={assetUrl('/images/brand/halal.jpg')} alt="Halal certified" className="h-24 w-24 rounded-full" />
         <h2 className="mt-6 max-w-2xl text-4xl sm:text-5xl">One of the first fully halal international chicken brands</h2>
         <p className="mt-4 max-w-xl text-lg text-char/70">Halal is not an add-on for us. It has been part of every Chicking kitchen since day one.</p>
         <Link to="/menu" className="btn-primary mt-8">Explore the menu <ArrowIcon /></Link>

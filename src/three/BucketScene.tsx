@@ -4,6 +4,7 @@ import { useEffect, useMemo, useRef, useState } from 'react'
 import * as THREE from 'three'
 import type { Flavour } from '../data/menu'
 import { createBucketTexture, getChickenGeometry } from './geometry'
+import { assetUrl } from '../lib/assetUrl'
 
 const BUCKET = { top: 1.05, bottom: 0.78, height: 1.55 }
 const POP_DURATION = 0.6
@@ -38,7 +39,7 @@ function useLogoImage(src: string): HTMLImageElement | null {
 }
 
 function Bucket() {
-  const logo = useLogoImage('/images/brand/logo-round.png')
+  const logo = useLogoImage(assetUrl('/images/brand/logo-round.png'))
   const texture = useMemo(() => createBucketTexture(logo), [logo])
   useEffect(() => () => texture.dispose(), [texture])
 

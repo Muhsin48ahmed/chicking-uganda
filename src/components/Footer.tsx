@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom'
 import { LOCATIONS, NAV_LINKS, SITE, SOCIAL_LINKS } from '../config/site'
 import { telHref } from '../lib/format'
 import { ClockIcon, PhoneIcon, PinIcon } from './Icons'
+import { assetUrl } from '../lib/assetUrl'
 
 const CURRENT_YEAR = new Date().getFullYear()
 
@@ -12,12 +13,12 @@ export function Footer() {
       <div aria-hidden className="pointer-events-none absolute -top-24 -right-24 h-72 w-72 rounded-full bg-brand/20 blur-3xl" />
       <div className="container-page relative grid gap-12 md:grid-cols-2 lg:grid-cols-4">
         <div>
-          <img src="/images/brand/logo-round.png" alt="Chicking" width={88} height={88} className="h-20 w-20" />
+          <img src={assetUrl('/images/brand/logo-round.png')} alt="Chicking" width={88} height={88} className="h-20 w-20" />
           <p className="mt-4 max-w-xs text-sm">
             Part of the global Chicking family: fully halal, made fresh to order, since 2000.
           </p>
           <div className="mt-5 flex items-center gap-3">
-            <img src="/images/brand/halal.jpg" alt="Halal certified" width={44} height={44} className="h-11 w-11 rounded-full" />
+            <img src={assetUrl('/images/brand/halal.jpg')} alt="Halal certified" width={44} height={44} className="h-11 w-11 rounded-full" />
             <span className="text-xs uppercase tracking-widest text-white/60">100% Halal</span>
           </div>
         </div>
