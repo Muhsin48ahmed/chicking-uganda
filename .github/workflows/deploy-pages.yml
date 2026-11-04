@@ -45,3 +45,6 @@ jobs:
     steps:
       - id: deployment
         uses: actions/deploy-pages@v4
+        with:
+          # Pages can be slow to publish ~15 MB of video; the default 10 min limit has timed out.
+          timeout: 1200000
